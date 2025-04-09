@@ -1,43 +1,36 @@
-            #language: pt
+             #language: pt
 
-            Funcionalidade: Gerenciamento de itens favoritos na EBAC-SHOP
-
-            Como cliente da EBAC-SHOP
-            Quero favoritar os itens que eu gosto
-            Para efetuar a compra futuramente
+            Funcionalidade: Tela de login
+            Como aluno do Portal EBAC
+            Quero me autenticars
+            Para visualizar minhas notas
 
             Contexto:
-            Dado que estou logado na minha conta da EBAC-SHOP
-            E estou visualizando um produto na loja
+            Dado que eu acesse a página de autenticação do portal EBAC
 
-            Cenário: Adicionar e acessar lista de favoritos
-            Quando clico no botão "Favoritar" de um produto
-            Então o produto deve ser adicionado à minha lista de favoritos
-            E devo conseguir acessar essa lista através do menu "Favoritos"
+            Cenário: Autenticação válida
 
-            Cenário: Remover item dos favoritos
-            Dado que tenho um produto na minha lista de favoritos
-            Quando clico no botão "Remover dos favoritos"
-            Então o produto deve ser retirado da minha lista de favoritos
+            Quando eu digitar o uduário "joao@ebac.com.br"
+            E a senha "senha@123"
+            Então deve exibir uma mensagem de boas vindas "Olá João"
 
-            Cenário: Persistência dos favoritos após logout e login
-            Dado que tenho produtos na minha lista de favoritos
-            Quando faço logout da conta
-            E faço login novamente
-            Então os mesmos produtos devem continuar salvos na minha lista de favoritos
+            Cenário: Usuário inexistente
+            Quando eu digitar o usuário "xxxyyyzzz@ebac.com.br"
+            E a senha "senha@123"
+            Então deve exibir uma mensagem de alerta: "Usuário inexistente"
 
-            Cenário: Transferir item dos favoritos para o carrinho
-            Dado que tenho um produto na minha lista de favoritos
-            Quando clico na opção "Adicionar ao carrinho"
-            Então o produto deve ser adicionado ao meu carrinho de compras
+            Cenário: Usuário com senha inválida
+            Quando eu digitar o uduário "joao@ebac.com.br"
+            E a senha "fkjuaehfka"
+            Então deve exibir uma mensagem alerta: "Usuário ou senha inválidos"
 
-            Esquema do Cenário: Notificação de alteração de preço de produto favoritado
-            Dado que o <produto> está na minha lista de favoritos
-            E o preço anterior era <preco_antigo>
-            Quando o preço é atualizado para <preco_novo>
-            Então devo receber uma notificação com a <mensagem>
+            Esquema do Cenário: Autenticar multiplos usuário
+            Quando eu digitar o <usuario>
+            E a <senha>
+            Então deve exibir a <mensagem> de sucesso
 
             Exemplos:
-            | produto        | preco_antigo | preco_novo | mensagem                                             |
-            | Camiseta EBAC  | R$ 59,90     | R$ 49,90   | O produto "Camiseta EBAC" teve uma redução de preço! |
-            | Fone de Ouvido | R$ 99,00     | R$ 109,00  | O produto "Fone de Ouvido" teve seu preço alterado.  |
+            | usuario            | senha       | mensagem    |
+            | "joao@ebac.com.br" | "teste@123" | "Olá joão!" |
+            | "maria@ebac.com.br"| "teste@123" | "Olá Maria!"|
+            | "jose@ebac.com.br" | "teste@123" | "Olá José!" |
